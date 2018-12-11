@@ -3,8 +3,8 @@ PRACTICE Exam 1, problem 3.
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Valerie Galluzzi, Mark Hays, Amanda Stouder, Aaron Wilkin,
-         their colleagues, and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues, and John Neill.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -98,6 +98,19 @@ def run_test_problem3a():
 
     window3.close_on_mouse_click()
 
+    title = 'Problem 3a. Test 5: Start at (50, 40), 15 lines'
+    window4 = rg.RoseWindow(450, 300, title)
+
+    # Test 5 (it is on window 1):
+    point = rg.Point(50, 40)
+    expected = 36
+    answer = problem3a(window1, point, 6)
+    print()
+    print('Test 5 expected:', expected)
+    print('       actual:  ', answer)
+
+    window1.close_on_mouse_click()
+
     # -------------------------------------------------------------------------
     # TO DO: 2 (continued).
     # Below this comment (or integrated with one of the above tests,
@@ -106,6 +119,21 @@ def run_test_problem3a():
 
 
 def problem3a(window, point, n):
+    total = 0
+    for k in range(n):
+        tedford = rg.Line(rg.Point(point.x + (20 * (k + 1)), point.y + (10 * (k + 1))), rg.Point(point.x + (20 * (k + 1)), (point.y + (10 * (k + 1))) + 50))
+        if k < 6:
+            tedford.thickness = 2 * k
+            total = total + tedford.thickness
+        else:
+            tedford.thickness = 13
+            total = total + tedford.thickness
+
+
+        tedford.attach_to(window)
+        window.render()
+    return total
+
     """
     See   problem3a_picture.pdf   in this project for pictures
     that may help you better understand the following specification:
@@ -166,6 +194,8 @@ def run_test_problem3b():
 
 
 def problem3b(m, point1):
+
+
     """
     See   problem3b_picture.pdf   in this project for pictures
     that may help you better understand the following specification:
